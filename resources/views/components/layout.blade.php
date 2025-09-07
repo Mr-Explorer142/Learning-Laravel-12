@@ -10,6 +10,25 @@
 </head>
 
 <body>
+
+    {{-- Flash message disappears after 3 seconds with minimal fading effect --}}
+    @if (session('success'))
+        <div id="flash" class="p-4 text-center bg-green-50 text-green-500 font-bold">
+            {{ session('success') }}
+        </div>
+
+        <script>
+            setTimeout(() => {
+                const flash = document.getElementById('flash');
+                if (flash) {
+                    flash.style.opacity = '0';  // fade out
+                    setTimeout(() => flash.remove(), 1000);
+                }
+            }, 3000); // disappears after 3 seconds
+        </script>
+    @endif
+
+
     {{-- Header Section --}}
     <header>
         <nav>

@@ -1,6 +1,7 @@
 <?php
 
 namespace Database\Factories;
+use App\Models\Institution;
 
 use Illuminate\Database\Eloquent\Factories\Factory;
 
@@ -19,7 +20,8 @@ class ExplorerFactory extends Factory
         return [
             'name' => fake()->name(),
             'bio' => fake()->realText(100),
-            'skill' => fake()->numberBetween(0, 100)
+            'skill' => fake()->numberBetween(0, 100),
+            'institution_id' => Institution::inRandomOrder()->first()->id,
         ];
     }
 }

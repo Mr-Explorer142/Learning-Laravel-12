@@ -5,7 +5,10 @@
         @foreach ($explorers as $explorer)
             <li>
                 <x-card href="{{ route('explorers.show' ,$explorer->id) }}" :highlight="$explorer->skill > 70">
-                    <h3>{{ $explorer->name}}</h3>
+                    <div>
+                        <h3>{{ $explorer->name}}</h3>
+                        <p>{{ $explorer->institution->name }}</p>
+                    </div>
                 </x-card>
             </li>
         @endforeach

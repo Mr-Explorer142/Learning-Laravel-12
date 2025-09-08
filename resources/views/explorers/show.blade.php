@@ -15,11 +15,16 @@
         <p>{{ $explorer->institution->description }}</p>
     </div>
 
-    <form action="{{ route('explorers.destroy', $explorer->id) }}" method="post">
-        @csrf
-        @method('DELETE')
-        <button type="submit" class="btn py-4">
-            Delete Explorer
-        </button>
-    </form>
+    <div class="flex gap-4">
+        {{-- Delete --}}
+        <form action="{{ route('explorers.destroy', $explorer->id) }}" method="post">
+            @csrf
+            @method('DELETE')
+            <button type="submit" class="btn py-4">
+                Delete Explorer
+            </button>
+        </form>
+        {{-- Edit --}}
+        <a href="{{ route('explorers.edit', $explorer) }}" class="btn">Edit info</a>
+    </div>
 </x-layout>

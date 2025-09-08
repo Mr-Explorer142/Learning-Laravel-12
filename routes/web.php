@@ -19,3 +19,7 @@ Route::post('/explorers', [ExplorerController::class, 'store'])->name('explorers
 // Route::delete('/explorers/{id}', [ExplorerController::class, 'destroy'])->name('explorers.destroy');
 
 Route::delete('/explorers/{explorer}', [ExplorerController::class, 'destroy'])->name('explorers.destroy');
+
+Route::get('/explorers/{explorer}/edit', [ExplorerController::class, 'edit'])->name('explorers.edit');
+
+Route::put('/explorers/{explorer}', [ExplorerController::class, 'update'])->name('explorers.update');

@@ -1,7 +1,8 @@
 <x-layout>
-    <form action="{{ route('explorers.store') }}" method="POST">
+    <form action="{{ route('explorers.update', $explorer->id) }}" method="POST">
         @csrf
-        <h2>Create a New Explorer</h2>
+        @method('PUT')
+        <h2>Edit your info</h2>
 
         <!-- Explorer's Name -->
         <label for="name">Explorer Name:</label>
@@ -9,7 +10,7 @@
             type="text" 
             id="name" 
             name="name" 
-            value="{{ old('name') }}" 
+            value="{{ old('name', $explorer->name) }}" 
             required
         >
 
@@ -19,7 +20,7 @@
             type="number" 
             id="skill" 
             name="skill" 
-            value="{{ old('skill') }}"
+            value="{{ old('skill', $explorer->skill) }}"
             required
         >
 
@@ -30,20 +31,22 @@
             id="bio" 
             name="bio" 
             required
-        >{{ old('bio') }}</textarea>
+        >{{ old('bio', $explorer->bio) }}</textarea>
 
         <!-- select an Institution -->
         <label for="institution_id">Institution:</label>
         <select id="institution_id" name="institution_id" required>
             <option value="" disabled selected>Select an Institution</option>
             @foreach ($institutions as $institution)
-                <option value="{{ $institution->id }}" {{ $institution->id == old('institution_id') ? 'selected' : '' }}>
-                    {{ $institution->name }}
-                </option>
+              <option 
+                  value="{{ $institution->id }}" 
+                  {{ $institution->id == (old('institution_id') ?? $explorer->institution_id) ? 'selected' : '' }}>
+                  {{ $institution->name }}
+              </option>
             @endforeach
         </select>
 
-        <button type="submit" class="btn mt-4">Create Explorer</button>
+        <button type="submit" class="btn mt-4">Update Explorer</button>
 
         <!-- validation errors -->
         @if ($errors->any())
